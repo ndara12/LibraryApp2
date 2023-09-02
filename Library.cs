@@ -157,10 +157,7 @@ namespace LibraryApp
 
                 _context.SaveChanges();
             }
-            else
-            {
-                Console.WriteLine("It's Already Borrowed or the customer or book does not exist.");
-            }
+     
         }
 
         //return book
@@ -195,5 +192,15 @@ namespace LibraryApp
         {
             return _context.BookTable.Where(book => book.Status == "Borrowed").ToList();
         }
+
+        public List<Book> ListAvailableBooks()
+        {
+            return _context.BookTable.Where(book => book.Status == "Available").ToList();
+        }
+        public List<Patron> GetAllPatrons()
+        {
+            return _context.Patron.ToList();
+        }
+
     }
 }
