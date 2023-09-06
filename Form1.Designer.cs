@@ -51,11 +51,15 @@
             comboBox1 = new ComboBox();
             tabPage3 = new TabPage();
             tabPage4 = new TabPage();
+            label8 = new Label();
+            comboBox5 = new ComboBox();
+            label7 = new Label();
+            comboBox4 = new ComboBox();
             bookBindingSource = new BindingSource(components);
             contextMenuStrip1 = new ContextMenuStrip(components);
             contextMenuStrip2 = new ContextMenuStrip(components);
             sqlCommand1 = new Microsoft.Data.SqlClient.SqlCommand();
-            comboBox4 = new ComboBox();
+            button5 = new Button();
             tabControl1.SuspendLayout();
             tabPage1.SuspendLayout();
             tabPage2.SuspendLayout();
@@ -268,6 +272,7 @@
             comboBox2.Name = "comboBox2";
             comboBox2.Size = new Size(742, 23);
             comboBox2.TabIndex = 1;
+            comboBox2.SelectedIndexChanged += comboBox2_SelectedIndexChanged;
             // 
             // comboBox1
             // 
@@ -292,6 +297,10 @@
             // 
             // tabPage4
             // 
+            tabPage4.Controls.Add(button5);
+            tabPage4.Controls.Add(label8);
+            tabPage4.Controls.Add(comboBox5);
+            tabPage4.Controls.Add(label7);
             tabPage4.Controls.Add(comboBox4);
             tabPage4.Location = new Point(4, 24);
             tabPage4.Name = "tabPage4";
@@ -300,6 +309,43 @@
             tabPage4.TabIndex = 3;
             tabPage4.Text = "Kitap İade Et";
             tabPage4.UseVisualStyleBackColor = true;
+            // 
+            // label8
+            // 
+            label8.AutoSize = true;
+            label8.Location = new Point(42, 86);
+            label8.Name = "label8";
+            label8.Size = new Size(66, 15);
+            label8.TabIndex = 6;
+            label8.Text = "Üye Seçiniz";
+            label8.Click += label8_Click;
+            // 
+            // comboBox5
+            // 
+            comboBox5.FormattingEnabled = true;
+            comboBox5.Location = new Point(42, 104);
+            comboBox5.Name = "comboBox5";
+            comboBox5.Size = new Size(237, 23);
+            comboBox5.TabIndex = 5;
+            comboBox5.SelectedIndexChanged += comboBox5_SelectedIndexChanged;
+            // 
+            // label7
+            // 
+            label7.AutoSize = true;
+            label7.Location = new Point(42, 37);
+            label7.Name = "label7";
+            label7.Size = new Size(73, 15);
+            label7.TabIndex = 4;
+            label7.Text = "Kitap Seçiniz";
+            // 
+            // comboBox4
+            // 
+            comboBox4.FormattingEnabled = true;
+            comboBox4.Location = new Point(42, 55);
+            comboBox4.Name = "comboBox4";
+            comboBox4.Size = new Size(237, 23);
+            comboBox4.TabIndex = 0;
+            comboBox4.SelectedIndexChanged += comboBox4_SelectedIndexChanged;
             // 
             // bookBindingSource
             // 
@@ -320,14 +366,15 @@
             sqlCommand1.CommandTimeout = 30;
             sqlCommand1.EnableOptimizedParameterBinding = false;
             // 
-            // comboBox4
+            // button5
             // 
-            comboBox4.FormattingEnabled = true;
-            comboBox4.Location = new Point(42, 55);
-            comboBox4.Name = "comboBox4";
-            comboBox4.Size = new Size(237, 23);
-            comboBox4.TabIndex = 0;
-            comboBox4.SelectedIndexChanged += comboBox4_SelectedIndexChanged;
+            button5.Location = new Point(207, 148);
+            button5.Name = "button5";
+            button5.Size = new Size(72, 23);
+            button5.TabIndex = 7;
+            button5.Text = "İade Et";
+            button5.UseVisualStyleBackColor = true;
+            button5.Click += button5_Click;
             // 
             // Form1
             // 
@@ -345,6 +392,7 @@
             tabPage2.PerformLayout();
             tabPage3.ResumeLayout(false);
             tabPage4.ResumeLayout(false);
+            tabPage4.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)bookBindingSource).EndInit();
             ResumeLayout(false);
         }
@@ -377,5 +425,9 @@
         private Label label6;
         private ComboBox comboBox4;
         private Microsoft.Data.SqlClient.SqlCommand sqlCommand1;
+        private Label label7;
+        private Label label8;
+        private ComboBox comboBox5;
+        private Button button5;
     }
 }

@@ -162,29 +162,36 @@ namespace LibraryApp
 
         //return book
 
-        public void ReturnBook(int customerId, int bookId)
+        public bool ReturnBook(int customerId, int bookId)
         {
             var patron = _context.Patron.Find(customerId);
             var book = _context.BookTable.Find(bookId);
 
             if (patron != null && book != null)
             {
-
-                book.Status = "Available";
-
                 if (!string.IsNullOrEmpty(patron.Borrowed))
                 {
                     var borrowedBooks = patron.Borrowed.Split(',').Select(b => b.Trim()).ToList();
 
-                    borrowedBooks.Remove(book.BookName);
+                    if (borrowedBooks.Contains(book.BookName))
+                    {
+                        borrowedBooks.Remove(book.BookName);
+                        patron.Borrowed = string.Join(",", borrowedBooks);
 
-                    patron.Borrowed = string.Join(",", borrowedBooks);
+                        // Set the book status to "Available" only if it was found in the borrowed list
+                        book.Status = "Available";
+
+                        // Save changes to the database
+                        _context.SaveChanges();
+                        return true; // Return true if the book was successfully returned
+                    }
                 }
-
-                // Save changes to the database
-                _context.SaveChanges();
             }
+
+            return false; // Return false if the book was not found or not returned
         }
+
+
 
 
         // List all checked-out books
